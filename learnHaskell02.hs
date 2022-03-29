@@ -82,3 +82,39 @@ exampleList = [8,50,10,2,-2]
         RETURNS: [5,5,5,5,5,5,5,5,5,5]
 -}
 
+{- For more advanced list 'generation', use LIST COMPREHENSION
+    So to get first 10 even numbers,
+        instead of doing Take 10 [2,4..]
+        [x*2 | x <- [1..10]]
+            ^^ that says for list of 1-10, every value double it.
+
+            ADD CONDITIONS IF YOU WANT, by ,
+            How about first 10 even numbers, only if <=10
+                [x*2 | x <- [1..10], x*2<=10]
+
+        ^^ think of this as filtering!!
+
+
+-}
+
+-- MORE ADVANCED LIST COMPREHENSION NEEDED
+
+-- Tuples - like lists, but set # of elements, can be different types. 
+    --Use brackets () instead of big brackets []
+    {- Tuple functions
+        fst -> gives first component
+        snd -> gives second component
+        zip -> will combine two lists, into tuples, pairing each element off together.
+            if one list longer than other, it will just cut off at shorter one
+        -}
+
+{- TUPLE + LIST COMPREHENSION COOL/POWERFUL EXAMPLE
+     which right triangle that has all sides equal to or smaller than 10 and has a perimeter of 24?
+    first, list all possible triangles (no side greater than 10..)
+        ghci> let triangles = [ (a,b,c) | c <- [1..10], b <- [1..10], a <- [1..10] ] 
+    better below, acknowledges triangle relationship in the lists and criteria must be right triangle
+        ghci> let rightTriangles = [ (a,b,c) | c <- [1..10], b <- [1..c], a <- [1..b], a^2 + b^2 == c^2] 
+    the home run, last criteria added, permiter equal 24
+    ghci> let rightTriangles' = [ (a,b,c) | c <- [1..10], b <- [1..c], a <- [1..b], a^2 + b^2 == c^2, a+b+c == 24]
+     -}
+
